@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <!-- Top menu item -->
+        <menuitem id="clinic_root" name="Clinic" web_icon="hr_employee_clinic,static/description/icon.png"/>
+
+
+        <menuitem id="clinic_configuration" name="Configuration" sequence="99" parent="clinic_root"/>
+
+
+    </data>
+</odoo>
