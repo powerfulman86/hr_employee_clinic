@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hr_employee_clinic_hr_employee_clinic,hr_employee_clinic.hr_employee_clinic,model_hr_employee_clinic_hr_employee_clinic,base.group_user,1,1,1,1
+access_clinic_detection,access_clinic_detection,model_clinic_detection,base.group_user,1,1,1,1
+access_clinic_detection_medicine,access_clinic_detection_medicine,model_clinic_detection_medicine,base.group_user,1,1,1,1
