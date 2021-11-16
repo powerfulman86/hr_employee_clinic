@@ -60,7 +60,7 @@ class ClinicDetection(models.Model):
         return res
 
     picking_count = fields.Integer(compute='_compute_picking', string='Picking count', default=0, store=True)
-    picking_ids = fields.One2many('stock.picking', compute='_compute_picking', string='Deliveries', copy=False,
+    picking_ids = fields.many2many('stock.picking', compute='_compute_picking', string='Deliveries', copy=False,
                                    store=True)
 
     @api.model
