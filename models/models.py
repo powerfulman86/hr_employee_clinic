@@ -20,3 +20,6 @@ class StockMove(models.Model):
 
     detection_line_id = fields.Many2one('clinic.detection.medicine',
                                         'Purchase Order Line', ondelete='set null', index=True, readonly=True)
+    created_detection_line_id = fields.Many2one('purchase.order.line',
+                                                'Created Detection Order Line', ondelete='set null', readonly=True,
+                                                copy=False)

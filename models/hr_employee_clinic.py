@@ -60,7 +60,7 @@ class ClinicDetection(models.Model):
         return res
 
     picking_count = fields.Integer(compute='_compute_picking', string='Picking count', default=0, store=True)
-    picking_ids = fields.Many2many('stock.picking', compute='_compute_picking', string='Receptions', copy=False,
+    picking_ids = fields.One2many('stock.picking', compute='_compute_picking', string='Deliveries', copy=False,
                                    store=True)
 
     @api.model
@@ -145,14 +145,22 @@ class ClinicDetection(models.Model):
 
     @api.model
     def _prepare_picking(self):
+        StockWarehouse = self.env['stock.warehouse']
+
+        if (not self.picking_type_id) or (not self.picking_type_id.default_location_dest_id):
+            customerloc, supplierloc = StockWarehouse._get_partner_locations()
+            destination_id = customerloc.id
+        else:
+            destination_id = self.picking_type_id.default_location_dest_id.id
+
         return {
             'picking_type_id': self.picking_type_id.id,
-            'partner_id': self.detection_employee.id,
+            'partner_id': self.user_id.partner_id.id,
             'user_id': False,
             'date': self.detection_date,
             'origin': self.name,
-            'location_dest_id': self.picking_type_id.default_location_dest_id,
-            'location_id': self.picking_type_id.default_location_src_id,
+            'location_dest_id': destination_id,
+            'location_id': self.picking_type_id.default_location_src_id.id,
             'company_id': self.company_id.id,
         }
 
@@ -160,7 +168,7 @@ class ClinicDetection(models.Model):
         StockPicking = self.env['stock.picking']
         for order in self:
             if any([ptype in ['product', 'consu'] for ptype in order.detection_medicine.mapped('product_id.type')]):
-                pickings = order.picking_ids.filtered(lambda x: x.state == 'deliver')
+                pickings = order.picking_ids.filtered(lambda x: x.state not in ('done', 'cancel'))
                 if not pickings:
                     res = order._prepare_picking()
                     picking = StockPicking.create(res)
@@ -176,6 +184,28 @@ class ClinicDetection(models.Model):
                 picking.message_post_with_view('mail.message_origin_link',
                                                values={'self': picking, 'origin': order},
                                                subtype_id=self.env.ref('mail.mt_note').id)
+        return True
+
+    def action_view_picking(self):
+        """ This function returns an action that display existing picking orders of given purchase order ids. When only one found, show the picking immediately.
+        """
+        action = self.env.ref('stock.action_picking_tree_all')
+        result = action.read()[0]
+        # override the context to get rid of the default filtering on operation type
+        result['context'] = {'default_picking_type_id': self.picking_type_id.id}
+        pick_ids = self.mapped('picking_ids')
+        # choose the view_mode accordingly
+        if not pick_ids or len(pick_ids) > 1:
+            result['domain'] = "[('id','in',%s)]" % (pick_ids.ids)
+        elif len(pick_ids) == 1:
+            res = self.env.ref('stock.view_picking_form', False)
+            form_view = [(res and res.id or False, 'form')]
+            if 'views' in result:
+                result['views'] = form_view + [(state, view) for state, view in result['views'] if view != 'form']
+            else:
+                result['views'] = form_view
+            result['res_id'] = pick_ids.id
+        return result
 
 
 class ClinicDetectionMedicine(models.Model):
@@ -186,7 +216,7 @@ class ClinicDetectionMedicine(models.Model):
     detection_id = fields.Many2one('clinic.detection', string='Detection Reference', required=True, ondelete='cascade',
                                    index=True, copy=False)
     name = fields.Text(string='Description', )
-    date_order = fields.Datetime(related='detection_id.detection_date', string='Order Date', readonly=True)
+    detection_date = fields.Datetime(related='detection_id.detection_date', string='Order Date', readonly=True)
     branch_id = fields.Many2one(related='detection_id.branch_id', string="Branch", index=True)
     company_id = fields.Many2one('res.company', related='detection_id.company_id', string='Company', store=True,
                                  readonly=True)
@@ -205,12 +235,26 @@ class ClinicDetectionMedicine(models.Model):
     product_uom_category_id = fields.Many2one(related='product_id.uom_id.category_id', readonly=True)
     qty_delivered = fields.Float('Delivered Quantity', copy=False, compute_sudo=True, store=True,
                                  digits='Product Unit of Measure', compute="_compute_qty_delivered")
+    qty_to_deliver = fields.Float(string="Qty Remain", compute='_compute_qty_to_deliver', store=True)
     move_ids = fields.One2many('stock.move', 'detection_line_id', string='Detection', readonly=True,
                                ondelete='set null', copy=False)
+    move_dest_ids = fields.One2many('stock.move', 'created_detection_line_id', 'Detection Moves')
 
+    display_type = fields.Selection([
+        ('line_section', "Section"),
+        ('line_note', "Note")], default=False, help="Technical field for UX purpose.")
+
+    @api.depends('move_ids.state', 'move_ids.scrapped', 'move_ids.product_uom_qty', 'move_ids.product_uom')
     def _compute_qty_delivered(self):
-        for line in self:
-            line.qty_received = 0.0
+        for line in self:  # TODO: maybe one day, this should be done in SQL for performance sake
+            qty = 0.0
+            outgoing_moves = self.env['stock.move']
+            for move in outgoing_moves:
+                if move.state != 'done':
+                    continue
+                qty += move.product_uom._compute_quantity(move.product_uom_qty, line.product_uom,
+                                                          rounding_method='HALF-UP')
+            line.qty_delivered = qty
 
     @api.onchange('product_id')
     def _product_id_change(self):
@@ -235,45 +279,27 @@ class ClinicDetectionMedicine(models.Model):
         res = []
         if self.product_id.type not in ['product', 'consu']:
             return res
-        qty = 0.0
-        price_unit = self._get_stock_move_price_unit()
-        outgoing_moves, incoming_moves = self._get_outgoing_incoming_moves()
-        for move in outgoing_moves:
-            qty -= move.product_uom._compute_quantity(move.product_uom_qty, self.product_uom, rounding_method='HALF-UP')
-        for move in incoming_moves:
-            qty += move.product_uom._compute_quantity(move.product_uom_qty, self.product_uom, rounding_method='HALF-UP')
-        description_picking = self.product_id.with_context(
-            lang=self.order_id.dest_address_id.lang or self.env.user.lang)._get_description(
-            self.order_id.picking_type_id)
         template = {
             # truncate to 2000 to avoid triggering index limit error
             # TODO: remove index in master?
             'name': (self.name or '')[:2000],
             'product_id': self.product_id.id,
             'product_uom': self.product_uom.id,
-            'date': self.order_id.date_order,
-            'date_expected': self.date_planned,
-            'location_id': self.order_id.partner_id.property_stock_supplier.id,
-            'location_dest_id': self.order_id._get_destination_location(),
+            'date': self.detection_date,
+            'location_id': self.detection_id.picking_type_id.default_location_src_id.id,
+            'location_dest_id': self.detection_id.picking_type_id.default_location_dest_id.id,
             'picking_id': picking.id,
-            'partner_id': self.order_id.dest_address_id.id,
+            'partner_id': self.detection_id.user_id.partner_id.id,
             'move_dest_ids': [(4, x) for x in self.move_dest_ids.ids],
             'state': 'draft',
-            'purchase_line_id': self.id,
-            'company_id': self.order_id.company_id.id,
-            'price_unit': price_unit,
-            'picking_type_id': self.order_id.picking_type_id.id,
-            'group_id': self.order_id.group_id.id,
-            'origin': self.order_id.name,
-            'propagate_date': self.propagate_date,
-            'propagate_date_minimum_delta': self.propagate_date_minimum_delta,
-            'description_picking': description_picking,
-            'propagate_cancel': self.propagate_cancel,
-            'route_ids': self.order_id.picking_type_id.warehouse_id and [
-                (6, 0, [x.id for x in self.order_id.picking_type_id.warehouse_id.route_ids])] or [],
-            'warehouse_id': self.order_id.picking_type_id.warehouse_id.id,
+            'detection_line_id': self.id,
+            'company_id': self.detection_id.company_id.id,
+            'picking_type_id': self.detection_id.picking_type_id.id,
+            'origin': self.detection_id.name,
+            'description_picking': 'Employee Detection Medicine Deliver',
+            'warehouse_id': self.detection_id.picking_type_id.warehouse_id.id,
         }
-        diff_quantity = self.product_qty - qty
+        diff_quantity = self.product_qty
         if float_compare(diff_quantity, 0.0, precision_rounding=self.product_uom.rounding) > 0:
             po_line_uom = self.product_uom
             quant_uom = self.product_id.uom_id

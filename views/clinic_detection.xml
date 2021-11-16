@@ -8,14 +8,27 @@
             <field name="arch" type="xml">
                 <form string="Detection">
                     <header>
-                        <button name="action_approve" string="Approve" type="object" states="draft" class="oe_highlight" />
-                        <button name="action_deliver" string="Deliver" type="object" states="approve" class="oe_highlight" />
-                        <button name="action_close" string="Close" type="object" states="deliver" class="oe_highlight" />
-                        <button name="action_cancel" string="Cancel" type="object" states="draft,approve" class="oe_highlight" />
+                        <button name="action_approve" string="Approve" type="object" states="draft"
+                                class="oe_highlight"/>
+                        <button name="action_deliver" string="Deliver" type="object" states="approve"
+                                class="oe_highlight"/>
+                        <button name="action_close" string="Close" type="object" states="deliver" class="oe_highlight"/>
+                        <button name="action_cancel" string="Cancel" type="object" states="draft,approve"
+                                class="oe_highlight"/>
                         <field name="state" widget="statusbar"/>
                     </header>
 
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object"
+                                    name="action_view_picking"
+                                    class="oe_stat_button"
+                                    icon="fa-truck" attrs="{'invisible':[('picking_ids','=',[])]}">
+                                <field name="picking_count" widget="statinfo" string="Delivery"
+                                       help="Outgoing Shipments"/>
+                                <field name="picking_ids" invisible="1"/>
+                            </button>
+                        </div>
                         <div class="oe_title">
                             <h3>
                                 <field name="name" readonly="1"/>
