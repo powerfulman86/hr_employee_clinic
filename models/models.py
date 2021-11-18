@@ -19,7 +19,7 @@ class StockMove(models.Model):
     _inherit = 'stock.move'
 
     detection_line_id = fields.Many2one('clinic.detection.medicine',
-                                        'Purchase Order Line', ondelete='set null', index=True, readonly=True)
-    created_detection_line_id = fields.Many2one('purchase.order.line',
+                                        'Detection Order Line', ondelete='set null', index=True, readonly=True)
+    created_detection_line_id = fields.Many2one('clinic.detection.medicine',
                                                 'Created Detection Order Line', ondelete='set null', readonly=True,
                                                 copy=False)

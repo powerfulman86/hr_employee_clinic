@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="detection_form_search" model="ir.ui.view">
+            <field name="name">clinic.detection.search</field>
+            <field name="model">clinic.detection</field>
+            <field name="arch" type="xml">
+                <search string="Detection">
+                    <field name="reference"/>
+                    <field name="branch_id"/>
+                    <field name="detection_doctor"/>
+                    <field name="detection_employee"/>
+                    <field name="user_id"/>
+                    <field name="detection_date"/>
+                    <filter string="My Orders" domain="[('user_id', '=', uid)]" name="my_detection_orders_filter"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Employee" name="employee" domain="[]"
+                                context="{'group_by': 'detection_employee'}"/>
+                        <filter string="Doctor" name="doctor" domain="[]" context="{'group_by': 'detection_doctor'}"/>
+                        <filter string="Branch" name="branch" domain="[]" context="{'group_by': 'branch_id'}"/>
+                        <filter string="User" name="userid" domain="[]" context="{'group_by': 'user_id'}"/>
+                        <filter string="Date" name="detection_date" domain="[]"
+                                context="{'group_by': 'detection_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
         <record id="detection_form_view" model="ir.ui.view">
             <field name="name">clinic.detection.form</field>
@@ -139,7 +163,6 @@
                 </p>
             </field>
         </record>
-
 
         <menuitem id="clinic_transaction"
                   name="Detection"
