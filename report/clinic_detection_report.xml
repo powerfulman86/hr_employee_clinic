@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_clinic_detection_search" model="ir.ui.view">
+            <field name="name">clinic.detection.report.search</field>
+            <field name="model">clinic.detection.report</field>
+            <field name="arch" type="xml">
+                <search string="Clinic Detection Analysis">
+                    <field name="detection_date"/>
+                    <field name="product_id"/>
+                    <field name="user_id"/>
+                    <field name="branch_id"/>
+                    <field name="detection_doctor"/>
+                    <field name="detection_employee"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Branch" name="branch" context="{'group_by':'branch_id'}"/>
+                        <filter string="User" name="user" context="{'group_by':'user_id'}"/>
+                        <filter string="Doctor" name="doctor" context="{'group_by':'detection_doctor'}"/>
+                        <filter string="Employee" name="Employee" context="{'group_by':'detection_employee'}"/>
+                        <filter string="Detection Date" name="detection_date" context="{'group_by':'detection_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="view_clinic_detection_pivot" model="ir.ui.view">
+            <field name="name">clinic.detection.report.pivot</field>
+            <field name="model">clinic.detection.report</field>
+            <field name="arch" type="xml">
+                <pivot string="Clinic Detection Analysis" disable_linking="True">
+                    <field name="detection_employee" type="row"/>
+                    <field name="detection_date" interval="month" type="col"/>
+                    <field name="product_qty" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_clinic_detection_graph" model="ir.ui.view">
+            <field name="name">clinic.detection.report.graph</field>
+            <field name="model">clinic.detection.report</field>
+            <field name="arch" type="xml">
+                <graph string="Clinic Detection Analysis" type="line">
+                    <field name="detection_date" type="row" interval="day"/>
+                    <field name="product_qty" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="action_clinic_detection_report" model="ir.actions.act_window">
+            <field name="name">Clinic Detection Analysis</field>
+            <field name="res_model">clinic.detection.report</field>
+            <field name="view_mode">graph,pivot</field>
+            <field name="help">This report performs analysis on Clinic Detection.</field>
+        </record>
+
+
+        <menuitem id="clinic_detection_report"
+                  name="Clinic Detection Report"
+                  action="action_clinic_detection_report"
+                  parent="hr_employee_clinic.clinic_report"
+                  sequence="3"/>
+
+    </data>
+</odoo>

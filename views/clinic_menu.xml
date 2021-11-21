@@ -10,5 +10,8 @@
                   sequence="99"
                   parent="clinic_root"/>
 
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="clinic_report" name="Report" parent="clinic_root" sequence="3"/>
+
     </data>
 </odoo>

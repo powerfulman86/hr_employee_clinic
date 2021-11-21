@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_clinic_detection_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <t t-set="o" t-value="o.with_context(lang=o.env.lang)"/>
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <h2>Clinic Detection #
+                            <span t-field="o.name"/>
+                        </h2>
+
+                        <div id="informations" class="row mt32 mb32">
+                            <div t-if="o.reference" class="col-3 bm-2">
+                                <strong>Reference:</strong>
+                                <p t-field="o.reference" class="m-0"/>
+                            </div>
+
+                            <div t-if="o.detection_date" class="col-3 bm-2">
+                                <strong>Date:</strong>
+                                <p t-field="o.detection_date" class="m-0"/>
+                            </div>
+
+                            <div t-if="o.user_id" class="col-3 bm-2">
+                                <strong>Responsible:</strong>
+                                <p t-field="o.user_id" class="m-0"/>
+                            </div>
+                        </div>
+
+                        <div id="informations" class="row mt32 mb32">
+                            <div t-if="o.branch_id" class="col-3 bm-2">
+                                <strong>Branch:</strong>
+                                <p t-field="o.branch_id" class="m-0"/>
+                            </div>
+
+                            <div t-if="o.detection_doctor" class="col-3 bm-2">
+                                <strong>Doctor:</strong>
+                                <p t-field="o.detection_doctor" class="m-0"/>
+                            </div>
+
+                            <div t-if="o.detection_employee" class="col-3 bm-2">
+                                <strong>Employee:</strong>
+                                <p t-field="o.detection_employee" class="m-0"/>
+                            </div>
+                        </div>
+
+                        <h4>Medicines</h4>
+                        <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th name="th_product">
+                                        <strong>Medicine</strong>
+                                    </th>
+                                    <th name="th_quantity">
+                                        <strong>Quantity</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.detection_medicine" t-as="medicine">
+                                    <tr>
+                                        <td id="th_product">
+                                            <span t-field="medicine.product_id"/>
+                                        </td>
+                                        <td id="th_quantity">
+                                            <span t-field="medicine.product_qty"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <report
+            string="Clinic Detection"
+            id="report_clinic_detection"
+            model="clinic.detection"
+            report_type="qweb-pdf"
+            name="hr_employee_clinic.report_clinic_detection_document"
+            file="hr_employee_clinic.report_clinic_detection_document"
+            print_report_name="'Clinic Detection - %s' % (object.name)"
+    />
+</odoo>

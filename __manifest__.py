@@ -15,6 +15,8 @@
         'views/product_views.xml',
         'views/partner_views.xml',
         'views/clinic_detection.xml',
+        'report/clinic_detection_template.xml',
+        'report/clinic_detection_report.xml',
     ],
     'images': ['static/description/icon.png'],
     'license': 'AGPL-3',

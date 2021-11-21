@@ -155,7 +155,7 @@
             <field name="name">Detection</field>
             <field name="res_model">clinic.detection</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_mode">tree,kanban,form</field>
             <field name="context">{}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
