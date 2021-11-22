@@ -50,6 +50,8 @@ class ClinicDetection(models.Model):
                                        domain="[('is_doctor', '=', True)]",
                                        auto_join=True, tracking=True, required=True)
     detection_employee = fields.Many2one('hr.employee', string='Employee', auto_join=True, tracking=True, required=True)
+    department_id = fields.Many2one('hr.department', related='detection_employee.department_id',
+                                    string='Employee Department', readonly=True, store=True)
     state = fields.Selection(AVAILABLE_STATE, string='State', index=True, default=AVAILABLE_STATE[0][0],
                              tracking=True, )
 

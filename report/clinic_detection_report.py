@@ -17,6 +17,7 @@ class ClinicDetectionReport(models.Model):
     detection_notes = fields.Html('Notes', )
     detection_doctor = fields.Many2one('res.partner', )
     detection_employee = fields.Many2one('hr.employee', )
+    department_id = fields.Many2one('hr.department', )
     product_id = fields.Many2one('product.product', )
     product_qty = fields.Float('Quantity', )
     product_uom = fields.Many2one('uom.uom', )
@@ -32,6 +33,7 @@ class ClinicDetectionReport(models.Model):
                     h.branch_id as branch_id,
                     h.detection_doctor as detection_doctor,
                     h.detection_employee as detection_employee,
+                    h.department_id as department_id,
                     m.product_id as product_id,
                     t.uom_id as product_uom,
                     sum(m.product_qty) as product_qty
@@ -48,6 +50,7 @@ class ClinicDetectionReport(models.Model):
                 join res_partner partner on h.detection_doctor = partner.id
                 join res_branch branch on h.branch_id = branch.id
                 join hr_employee employee on h.detection_employee = employee.id 
+                join hr_department department on h.department_id = department.id
                 %s
         """ % from_clause
 
@@ -58,6 +61,7 @@ class ClinicDetectionReport(models.Model):
             h.branch_id,
             h.detection_doctor,
             h.detection_employee,
+            h.department_id,
             m.product_id,
             t.uom_id %s
         """ % groupby
