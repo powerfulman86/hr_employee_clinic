@@ -1,0 +1,803 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_employee_clinic
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-24 08:21+0000\n"
+"PO-Revision-Date: 2021-11-24 08:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_employee_clinic
+#: model:ir.actions.report,print_report_name:hr_employee_clinic.report_clinic_detection
+msgid "'Clinic Detection - %s' % (object.name)"
+msgstr "'كشف طبي - %s' % (object.name)"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.report_clinic_detection_document
+msgid "<strong>Branch:</strong>"
+msgstr "الفرع"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.report_clinic_detection_document
+msgid "<strong>Date:</strong>"
+msgstr "التاريخ"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.report_clinic_detection_document
+msgid "<strong>Doctor:</strong>"
+msgstr "الدكتور"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.report_clinic_detection_document
+msgid "<strong>Employee:</strong>"
+msgstr "الموظف"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.report_clinic_detection_document
+msgid "<strong>Medicine</strong>"
+msgstr "الدواء"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.report_clinic_detection_document
+msgid "<strong>Quantity</strong>"
+msgstr "الكمية"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.report_clinic_detection_document
+msgid "<strong>Reference:</strong>"
+msgstr "رقم داخلي"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.report_clinic_detection_document
+msgid "<strong>Responsible:</strong>"
+msgstr "المسئول :"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__access_warning
+msgid "Access warning"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_type__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_view
+msgid "Approve"
+msgstr "اعتماد"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields.selection,name:hr_employee_clinic.selection__clinic_detection__state__approve
+msgid "Approved"
+msgstr "معتمد"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__branch_id
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__branch_id
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__branch_id
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_search
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_clinic_detection_search
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: hr_employee_clinic
+#: model:ir.actions.server,name:hr_employee_clinic.ir_actions_server_detection_cancel
+#: model:ir.model.fields.selection,name:hr_employee_clinic.selection__clinic_detection__state__cancel
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_view
+msgid "Cancel"
+msgstr "الغاء"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__product_uom_category_id
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_course_category_search
+msgid "Category"
+msgstr "الفئة"
+
+#. module: hr_employee_clinic
+#: model:ir.ui.menu,name:hr_employee_clinic.clinic_root
+msgid "Clinic"
+msgstr "العياده"
+
+#. module: hr_employee_clinic
+#: model:ir.actions.report,name:hr_employee_clinic.report_clinic_detection
+#: model:ir.model,name:hr_employee_clinic.model_clinic_detection
+msgid "Clinic Detection"
+msgstr "كشف العياده"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.report_clinic_detection_document
+msgid "Clinic Detection #"
+msgstr "كشف العياده #"
+
+#. module: hr_employee_clinic
+#: model:ir.actions.act_window,name:hr_employee_clinic.action_clinic_detection_report
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_clinic_detection_graph
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_clinic_detection_pivot
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_clinic_detection_search
+msgid "Clinic Detection Analysis"
+msgstr "تحليل كشف العياده"
+
+#. module: hr_employee_clinic
+#: model:ir.model,name:hr_employee_clinic.model_clinic_detection_medicine
+msgid "Clinic Detection Medicine"
+msgstr "ادوية كشوفات العياده"
+
+#. module: hr_employee_clinic
+#: model:ir.model,name:hr_employee_clinic.model_clinic_detection_report
+#: model:ir.ui.menu,name:hr_employee_clinic.clinic_detection_report
+msgid "Clinic Detection Report"
+msgstr "تقرير كشف العياده"
+
+#. module: hr_employee_clinic
+#: model:ir.model,name:hr_employee_clinic.model_clinic_detection_type
+msgid "Clinic Detection Type"
+msgstr "انواع العيادات"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_stock_warehouse__clinic_type_id
+msgid "Clinic Operation Type"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: code:addons/hr_employee_clinic/models/stock_warehouse.py:0
+#, python-format
+msgid "Clinic Orders"
+msgstr "اوامر صرف العياده"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_view
+msgid "Close"
+msgstr "اغلاق"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields.selection,name:hr_employee_clinic.selection__clinic_detection__state__close
+msgid "Closed"
+msgstr "مغلق"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__company_id
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__company_id
+msgid "Company"
+msgstr "الشركه"
+
+#. module: hr_employee_clinic
+#: model:ir.ui.menu,name:hr_employee_clinic.clinic_configuration
+msgid "Configuration"
+msgstr "الاعدادات"
+
+#. module: hr_employee_clinic
+#: model:ir.model,name:hr_employee_clinic.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection_medicine__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model_terms:ir.actions.act_window,help:hr_employee_clinic.detection_action
+msgid "Create a new Detection"
+msgstr "انشاء كشف جديد"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.actions.act_window,help:hr_employee_clinic.res_partner_action_doctor
+msgid "Create a new Doctor in your address book"
+msgstr "اضافة بيان دكتور جديد"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.actions.act_window,help:hr_employee_clinic.product_template_medicine_action
+msgid "Create a new product"
+msgstr "انشاء منتج جديد"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_stock_move__created_detection_line_id
+msgid "Created Detection Order Line"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__create_uid
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__create_uid
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_type__create_uid
+msgid "Created by"
+msgstr "انشئ بواسطة"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__create_date
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__create_date
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_type__create_date
+msgid "Created on"
+msgstr "انشئ في"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__access_url
+msgid "Customer Portal URL"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_search
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_view
+msgid "Deliver"
+msgstr "تسليم"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__picking_type_id
+msgid "Deliver To"
+msgstr "تسليم الى"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields.selection,name:hr_employee_clinic.selection__clinic_detection__state__deliver
+msgid "Delivered"
+msgstr "تم التسليم"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__qty_delivered
+msgid "Delivered Quantity"
+msgstr "الكمية المسلمه"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__picking_ids
+msgid "Deliveries"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_view
+msgid "Delivery"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__department_id
+msgid "Department"
+msgstr "الاداره"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__name
+msgid "Description"
+msgstr "الوصف"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__default_location_dest_id_usage
+msgid "Destination Location Type"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.actions.act_window,name:hr_employee_clinic.detection_action
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__move_ids
+#: model:ir.ui.menu,name:hr_employee_clinic.clinic_transaction
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_search
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_view
+msgid "Detection"
+msgstr "الكشف"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__detection_date
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__detection_date
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_clinic_detection_search
+msgid "Detection Date"
+msgstr "تاريخ الكشف"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__detection_doctor
+msgid "Detection Doctor"
+msgstr "الدكتور"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__detection_employee
+msgid "Detection Employee"
+msgstr "الموظف"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__move_dest_ids
+msgid "Detection Moves"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_stock_move__detection_line_id
+msgid "Detection Order Line"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__detection_id
+msgid "Detection Reference"
+msgstr "المرجع الداخلي"
+
+#. module: hr_employee_clinic
+#: model:ir.actions.act_window,name:hr_employee_clinic.open_clinic_detection_type
+#: model:ir.ui.menu,name:hr_employee_clinic.menu_clinic_detection_type
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_clinic_detection_type_list
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_course_category_search
+msgid "Detection Type"
+msgstr "نوع الكشف"
+
+#. module: hr_employee_clinic
+#: model:ir.model.constraint,message:hr_employee_clinic.constraint_clinic_detection_type_name_uniq
+msgid "Detection already exists !"
+msgstr "بيان الكشف موجود بالفعل"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__display_name
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__display_name
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__display_name
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_type__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__display_type
+msgid "Display Type"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__detection_doctor
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_search
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_clinic_detection_search
+msgid "Doctor"
+msgstr "الطبيب"
+
+#. module: hr_employee_clinic
+#: model:ir.actions.act_window,name:hr_employee_clinic.res_partner_action_doctor
+#: model:ir.ui.menu,name:hr_employee_clinic.menu_res_partner_action_doctor
+msgid "Doctors"
+msgstr "الاطباء"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields.selection,name:hr_employee_clinic.selection__clinic_detection__state__draft
+msgid "Draft"
+msgstr "مسوده"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__detection_employee
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_search
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_clinic_detection_search
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__department_id
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_clinic_detection_search
+msgid "Employee Department"
+msgstr "ادارة الموظف"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_search
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_clinic_detection_search
+msgid "Group By"
+msgstr "تجميع بواسطة"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__id
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__id
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__id
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_type__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__message_needaction
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__message_has_error
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: hr_employee_clinic
+#: code:addons/hr_employee_clinic/models/hr_employee_clinic.py:0
+#, python-format
+msgid "In order to delete Clinic Detection, you must cancel it first."
+msgstr "يجب تحويل حالة الكشف للالغاء قبل حذفه"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_res_partner__is_doctor
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_res_users__is_doctor
+msgid "Is Doctor"
+msgstr "طبيب"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_product_product__is_medicine
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_product_template__is_medicine
+msgid "Is Medicine"
+msgstr "علاج طبي"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__is_shipped
+msgid "Is Shipped"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection____last_update
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine____last_update
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report____last_update
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_type____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__write_uid
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__write_uid
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_type__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__write_date
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__write_date
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_type__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_view
+msgid "Medicine"
+msgstr "دواء"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.report_clinic_detection_document
+msgid "Medicines"
+msgstr "الادويه"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_search
+msgid "My Orders"
+msgstr "الكشوفات المسجله باسمي"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__name
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__name
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_type__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields.selection,name:hr_employee_clinic.selection__clinic_detection_medicine__display_type__line_note
+msgid "Note"
+msgstr "ملاحظات"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__detection_notes
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__detection_notes
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_type__notes
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__detection_notes
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_view
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model_terms:ir.actions.act_window,help:hr_employee_clinic.res_partner_action_doctor
+msgid "Odoo helps you easily track all activities related to a Doctor."
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__detection_date
+msgid "Order Date"
+msgstr "تاريخ الكشف"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__detection_medicine
+msgid "Order Parts"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_view
+msgid "Outgoing Shipments"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: code:addons/hr_employee_clinic/models/stock_warehouse.py:0
+#, python-format
+msgid "Picking Clinic"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__picking_count
+msgid "Picking count"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__access_url
+msgid "Portal Access URL"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__product_id
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__product_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: hr_employee_clinic
+#: model:ir.model,name:hr_employee_clinic.model_product_template
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__product_template_id
+msgid "Product Template"
+msgstr "قالب المنتج"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__product_uom
+msgid "Product Uom"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.actions.act_window,name:hr_employee_clinic.product_template_medicine_action
+#: model:ir.ui.menu,name:hr_employee_clinic.menu_product_template_medicine_action
+msgid "Products"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__qty_to_deliver
+msgid "Qty Remain"
+msgstr "المتبقي"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__product_qty
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__product_uom_qty
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__product_qty
+msgid "Quantity"
+msgstr "الكميه"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__reference
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__reference
+msgid "Reference"
+msgstr "الرقم المرجعي"
+
+#. module: hr_employee_clinic
+#: model:ir.ui.menu,name:hr_employee_clinic.clinic_report
+msgid "Report"
+msgstr "التقرير"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسئول"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields.selection,name:hr_employee_clinic.selection__clinic_detection_medicine__display_type__line_section
+msgid "Section"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__access_token
+msgid "Security Token"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__state
+msgid "State"
+msgstr "الحاله"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model,name:hr_employee_clinic.model_stock_move
+msgid "Stock Move"
+msgstr "حركة المخزون"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection_medicine__display_type
+msgid "Technical field for UX purpose."
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__default_location_dest_id_usage
+msgid "Technical field used to display the Drop Ship Address"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__branch_id
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection_medicine__branch_id
+msgid "This is branch to set"
+msgstr "يجب اختيار الفرع"
+
+#. module: hr_employee_clinic
+#: model_terms:ir.actions.act_window,help:hr_employee_clinic.action_clinic_detection_report
+msgid "This report performs analysis on Clinic Detection."
+msgstr "هذا التقرير يقوم بتحليل الكشوف الطبيه "
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__picking_type_id
+msgid "This will determine operation type of incoming shipment"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__detection_type
+msgid "Type"
+msgstr "النوع"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_medicine__product_uom
+msgid "Unit of Measure"
+msgstr "وحدة القياس"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__user_id
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection_report__user_id
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_form_search
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.view_clinic_detection_search
+msgid "User"
+msgstr "المستخدم"
+
+#. module: hr_employee_clinic
+#: model:ir.model,name:hr_employee_clinic.model_stock_warehouse
+msgid "Warehouse"
+msgstr "المخزن"
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,field_description:hr_employee_clinic.field_clinic_detection__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model:ir.model.fields,help:hr_employee_clinic.field_clinic_detection__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model_terms:ir.actions.act_window,help:hr_employee_clinic.product_template_medicine_action
+msgid ""
+"You must define a product for everything you sell or purchase,\n"
+"                    whether it's a storable product, a consumable or a service."
+msgstr ""
+
+#. module: hr_employee_clinic
+#: model_terms:ir.ui.view,arch_db:hr_employee_clinic.detection_tree_view
+msgid "detection_tree"
+msgstr ""

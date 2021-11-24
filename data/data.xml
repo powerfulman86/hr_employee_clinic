@@ -3,4 +3,10 @@
     <data noupdate="1">
         <function model="stock.warehouse" name="_create_missing_clinic_picking_types"/>
     </data>
+
+    <data noupdate="0">
+        <record id="clinic_detection_type" model="clinic.detection.type">
+            <field name="name">عامه</field>
+        </record>
+    </data>
 </odoo>

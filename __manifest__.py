@@ -4,10 +4,10 @@
     'summary': """  Custom Application for Employee Clinic SIIC""",
     'description': """ Employee Clinic SIIC """,
     'author': "SIIC",
-    'category': 'Human Resources/Employees',
+    'category': 'Human Resources/Employee Clinic',
     'depends': ['base', 'multi_branch', 'hr', 'stock'],
     'data': [
-        # 'security/security.xml',
+        'security/security.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'data/data.xml',

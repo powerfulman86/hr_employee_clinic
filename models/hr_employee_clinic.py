@@ -32,6 +32,11 @@ class ClinicDetection(models.Model):
         warehouse_ids = self.env['stock.warehouse'].search([('company_id', '=', company)], limit=1)
         return warehouse_ids
 
+    @api.model
+    def _default_detection_type(self):
+        detection_id = self.env['clinic.detection.type'].search([], limit=1)
+        return detection_id
+
     name = fields.Char('Name')
     reference = fields.Char(string="Reference", required=False, )
     company_id = fields.Many2one('res.company', 'Company', required=True, index=True, states=READONLY_STATES,
@@ -43,7 +48,8 @@ class ClinicDetection(models.Model):
     detection_date = fields.Datetime(string='Detection Date', required=True, index=True, copy=False,
                                      default=fields.Datetime.now, )
 
-    detection_type = fields.Many2one(comodel_name="clinic.detection.type", string="Type", required=False, )
+    detection_type = fields.Many2one(comodel_name="clinic.detection.type", string="Type", required=True,
+                                     default=_default_detection_type)
     detection_medicine = fields.One2many('clinic.detection.medicine', 'detection_id', string='Order Parts', copy=True,
                                          auto_join=True)
     detection_notes = fields.Html('Notes', help='Notes')
@@ -137,7 +143,7 @@ class ClinicDetection(models.Model):
         self.write({'state': "approve"})
 
     def action_deliver(self):
-        self._create_picking()
+        # self._create_picking()
         self.write({'state': "deliver"})
 
     def action_close(self):
