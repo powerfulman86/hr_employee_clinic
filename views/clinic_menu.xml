@@ -5,6 +5,8 @@
                   name="Clinic"
                   web_icon="hr_employee_clinic,static/description/icon.png"/>
 
+
+
         <menuitem id="clinic_configuration"
                   name="Configuration"
                   sequence="99"

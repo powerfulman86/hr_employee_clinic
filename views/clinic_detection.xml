@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="view_course_category_search" model="ir.ui.view">
+            <field name="name">clinic.detection.type.search</field>
+            <field name="model">clinic.detection.type</field>
+            <field name="arch" type="xml">
+                <search string="Detection Type">
+                    <field name="name" string="Category"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_clinic_detection_type_list" model="ir.ui.view">
+            <field name="name">clinic.detection.type.list</field>
+            <field name="model">clinic.detection.type</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Detection Type" editable="bottom">
+                    <field name="name"/>
+                    <field name="notes"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="open_clinic_detection_type" model="ir.actions.act_window">
+            <field name="name">Detection Type</field>
+            <field name="res_model">clinic.detection.type</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem
+                id="menu_clinic_detection_type"
+                action="open_clinic_detection_type"
+                parent="clinic_configuration"
+                sequence="10"/>
+
+        <!--Detection-->
+        <record id="ir_actions_server_detection_cancel" model="ir.actions.server">
+            <field name="name">Cancel</field>
+            <field name="model_id" ref="model_clinic_detection"/>
+            <field name="binding_model_id" ref="model_clinic_detection"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_cancel()</field>
+        </record>
+
         <record id="detection_form_search" model="ir.ui.view">
             <field name="name">clinic.detection.search</field>
             <field name="model">clinic.detection</field>
@@ -63,6 +108,7 @@
                                 <field name="reference"/>
                                 <field name="branch_id"/>
                                 <field name="detection_doctor"/>
+                                <field name="detection_type"/>
                             </group>
                             <group>
                                 <field name="detection_employee"/>
@@ -107,6 +153,7 @@
                     <field name="user_id"/>
                     <field name="branch_id"/>
                     <field name="detection_date"/>
+                    <field name="detection_type"/>
                     <field name="detection_doctor"/>
                     <field name="detection_employee"/>
                     <field name="department_id"/>

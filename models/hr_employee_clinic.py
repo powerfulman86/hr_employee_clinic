@@ -43,6 +43,7 @@ class ClinicDetection(models.Model):
     detection_date = fields.Datetime(string='Detection Date', required=True, index=True, copy=False,
                                      default=fields.Datetime.now, )
 
+    detection_type = fields.Many2one(comodel_name="clinic.detection.type", string="Type", required=False, )
     detection_medicine = fields.One2many('clinic.detection.medicine', 'detection_id', string='Order Parts', copy=True,
                                          auto_join=True)
     detection_notes = fields.Html('Notes', help='Notes')
@@ -318,3 +319,17 @@ class ClinicDetectionMedicine(models.Model):
             for val in line._prepare_stock_moves(picking):
                 values.append(val)
         return self.env['stock.move'].create(values)
+
+
+class ClinicDetectionType(models.Model):
+    _name = 'clinic.detection.type'
+    _rec_name = 'name'
+    _description = 'Clinic Detection Type'
+
+    name = fields.Char(string="Name", required=True)
+    notes = fields.Text(string="Notes", required=False, )
+    active = fields.Boolean(default=True, readonly=True)
+
+    _sql_constraints = [
+        ("name_uniq", "unique (name)", "Detection already exists !"),
+    ]
