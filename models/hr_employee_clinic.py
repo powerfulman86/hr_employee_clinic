@@ -239,7 +239,7 @@ class ClinicDetectionMedicine(models.Model):
         related="product_id.product_tmpl_id", domain=[('is_medicine', '=', True)])
 
     product_qty = fields.Float(string='Quantity', digits='Product Quantity', required=True, default=1.0)
-    product_uom_qty = fields.Float(string='Quantity', digits='Product Unit of Measure', required=True, default=1.0)
+    product_uom_qty = fields.Float(string='Uom Quantity', digits='Product Unit of Measure', required=True, default=1.0)
     product_uom = fields.Many2one('uom.uom', string='Unit of Measure',
                                   domain="[('category_id', '=', product_uom_category_id)]")
     product_uom_category_id = fields.Many2one(related='product_id.uom_id.category_id', readonly=True)
