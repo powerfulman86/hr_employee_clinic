@@ -15,6 +15,7 @@
         'views/product_views.xml',
         'views/partner_views.xml',
         'views/clinic_detection.xml',
+        'views/employee_medication.xml',
         'report/clinic_detection_template.xml',
         'report/clinic_detection_report.xml',
     ],

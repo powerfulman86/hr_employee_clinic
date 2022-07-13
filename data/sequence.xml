@@ -8,6 +8,11 @@
             <field name="padding">5</field>
         </record>
 
-
+        <record id="Employee_Medication" model="ir.sequence">
+            <field name="name">employee.medication.seq</field>
+            <field name="code">hr.employee.medication</field>
+            <field name="prefix">EM/</field>
+            <field name="padding">5</field>
+        </record>
     </data>
 </odoo>

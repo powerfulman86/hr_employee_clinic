@@ -5,7 +5,10 @@
                   name="Clinic"
                   web_icon="hr_employee_clinic,static/description/icon.png"/>
 
-
+<!--        <menuitem id="monthly_medication"-->
+<!--                  name="Monthly Medication"-->
+<!--                  sequence="2"-->
+<!--                  parent="clinic_root"/>-->
 
         <menuitem id="clinic_configuration"
                   name="Configuration"

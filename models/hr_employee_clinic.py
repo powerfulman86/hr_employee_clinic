@@ -42,7 +42,7 @@ class ClinicDetection(models.Model):
     company_id = fields.Many2one('res.company', 'Company', required=True, index=True, states=READONLY_STATES,
                                  default=lambda self: self.env.company.id)
     user_id = fields.Many2one('res.users', string='User', default=lambda self: self.env.uid, index=True,
-                              tracking=True)
+                              tracking=True, readonly=True)
     branch_id = fields.Many2one(comodel_name="res.branch", string="Branch", required=True,
                                 index=True, help='This is branch to set')
     detection_date = fields.Datetime(string='Detection Date', required=True, index=True, copy=False,

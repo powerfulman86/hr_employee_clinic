@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Employee Medication-->
+        <record id="employee_medication_form_search" model="ir.ui.view">
+            <field name="name">Employee Medication Search</field>
+            <field name="model">hr.employee.medication</field>
+            <field name="arch" type="xml">
+                <search string="Employee Medication">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="branch_id"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="doctor_id"/>
+                    <field name="approve_date"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Employee" name="employee" domain="[]"
+                                context="{'group_by': 'employee_id'}"/>
+                        <filter string="Doctor" name="doctor" domain="[]" context="{'group_by': 'doctor_id'}"/>
+                        <filter string="Branch" name="branch" domain="[]" context="{'group_by': 'branch_id'}"/>
+                        <filter string="User" name="userid" domain="[]" context="{'group_by': 'user_id'}"/>
+                        <filter string="Start Date" name="start_date" domain="[]" context="{'group_by': 'start_date'}"/>
+                        <filter string="Start Date" name="approve_date" domain="[]"
+                                context="{'group_by': 'approve_date'}"/>
+                        <filter string="Close Date" name="close_date" domain="[]" context="{'group_by': 'close_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="employee_medication_form_view" model="ir.ui.view">
+            <field name="name">Employee Medication form</field>
+            <field name="model">hr.employee.medication</field>
+            <field name="arch" type="xml">
+                <form string="Employee Medication">
+                    <header>
+                        <button name="action_approve" string="Approve" type="object" states="draft"
+                                class="oe_highlight"/>
+                        <button name="action_deliver" string="Deliver" type="object" states="approve"
+                                class="oe_highlight"/>
+                        <button name="action_close" string="Close" type="object" states="deliver" class="oe_highlight"/>
+                        <button name="action_cancel" string="Cancel" type="object" states="draft,approve"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <h3>
+                                <field name="name" readonly="1"/>
+                            </h3>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="branch_id"/>
+                                <field name="doctor_id"/>
+                                <field name="employee_id"/>
+                                <field name="department_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="start_date"/>
+                                <field name="approve_date"/>
+                                <field name="close_date"/>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Medicine">
+                                <field name="medication_line" widget="section_and_note_one2many" mode="tree">
+                                    <tree string="Medicine" editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="product_id"/>
+                                        <field name="product_qty"/>
+                                        <field name="product_uom"/>
+                                        <field name="product_uom_category_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Notes">
+                                <field name="notes"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="employee_medication_tree_view" model="ir.ui.view">
+            <field name="name">Employee Medication Tree</field>
+            <field name="model">hr.employee.medication</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Medication Tree">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="branch_id"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="doctor_id"/>
+                    <field name="approve_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="employee_medication_kanban_view" model="ir.ui.view">
+            <field name="name">Employee Medication Kanban</field>
+            <field name="model">hr.employee.medication</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="branch_id"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="doctor_id"/>
+                    <field name="approve_date"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <h4 class="mt0 mb0">
+                                            <field name="name"/>
+                                        </h4>
+                                    </strong>
+                                    <div class="o_kanban_record_top">
+                                        <h4 class="mt0 mb0">
+                                            <field name="approve_date"/>
+                                        </h4>
+                                    </div>
+                                    <div class="o_kanban_record_body">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="doctor_id"/>
+                                        </strong>
+                                        <p class="o_kanban_record_title">
+                                            <field name="employee_id"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="employee_medication" model="ir.actions.act_window">
+            <field name="name">Employee Medication</field>
+            <field name="res_model">hr.employee.medication</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Employee Monthly Medication
+                </p>
+            </field>
+        </record>
+
+<!--        <menuitem id="employee_medication_menu"-->
+<!--                  name="Employee Medication"-->
+<!--                  parent="monthly_medication"-->
+<!--                  action="employee_medication"-->
+<!--                  sequence="1"/>-->
+
+        <!--Monthly Medication Batch-->
+        <record id="monthly_medication_batch_search" model="ir.ui.view">
+            <field name="name">Monthly Medication Batch Search</field>
+            <field name="model">clinic.medication.batch</field>
+            <field name="arch" type="xml">
+                <search string="Monthly Medication Batch">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="branch_id"/>
+                    <field name="department_id"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="state"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Department" name="department_id" context="{'group_by': 'department_id'}"/>
+                        <filter string="Branch" name="branch" context="{'group_by': 'branch_id'}"/>
+                        <filter string="User" name="userid" context="{'group_by': 'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="monthly_medication_batch_form" model="ir.ui.view">
+            <field name="name">Monthly Medication Batch form</field>
+            <field name="model">clinic.medication.batch</field>
+            <field name="arch" type="xml">
+                <form string="Monthly Medication Batch">
+                    <header>
+<!--                        <button name="action_approve" string="Approve" type="object" states="draft"-->
+<!--                                class="oe_highlight"/>-->
+<!--                        <button name="action_deliver" string="Deliver" type="object" states="approve"-->
+<!--                                class="oe_highlight"/>-->
+<!--                        <button name="action_close" string="Close" type="object" states="deliver" class="oe_highlight"/>-->
+<!--                        <button name="action_cancel" string="Cancel" type="object" states="draft,approve"-->
+<!--                                class="oe_highlight"/>-->
+                        <field name="state" widget="statusbar"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <h3>
+                                <field name="name" readonly="1"/>
+                            </h3>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="branch_id"/>
+                                <field name="department_id" />
+                            </group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Notes">
+                                <field name="notes"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="monthly_medication_batch_tree_view" model="ir.ui.view">
+            <field name="name">Monthly Medication Batch Tree</field>
+            <field name="model">clinic.medication.batch</field>
+            <field name="arch" type="xml">
+                <tree string="Monthly Medication Batch Tree">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="branch_id"/>
+                    <field name="department_id"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="monthly_medication_batch_kanban_view" model="ir.ui.view">
+            <field name="name">Monthly Medication Batch Kanban</field>
+            <field name="model">clinic.medication.batch</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="branch_id"/>
+                    <field name="department_id"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <h4 class="mt0 mb0">
+                                            <field name="name"/>
+                                        </h4>
+                                    </strong>
+                                    <div class="o_kanban_record_top">
+                                        <h4 class="mt0 mb0">
+                                            <field name="branch_id"/>
+                                        </h4>
+                                    </div>
+                                    <div class="o_kanban_record_body">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="department_id"/>
+                                        </strong>
+                                        <p class="o_kanban_record_title">
+                                            <field name="state"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="monthly_medication_batch" model="ir.actions.act_window">
+            <field name="name">Monthly Medication Batch</field>
+            <field name="res_model">clinic.medication.batch</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Monthly Medication Batch
+                </p>
+            </field>
+        </record>
+
+<!--        <menuitem id="monthly_medication_batch_menu"-->
+<!--                  name="Monthly Medication Batch"-->
+<!--                  parent="monthly_medication"-->
+<!--                  action="monthly_medication_batch"-->
+<!--                  sequence="2"/>-->
+    </data>
+</odoo>
