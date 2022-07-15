@@ -5,20 +5,6 @@ from odoo.osv import expression
 from odoo.tools.float_utils import float_compare
 from odoo.exceptions import AccessError, UserError, ValidationError
 
-AVAILABLE_STATE = [
-    ('draft', 'Draft'),
-    ('approve', 'Approved'),
-    ('deliver', 'Delivered'),
-    ('close', 'Closed'),
-    ('cancel', 'Cancel'),
-]
-
-READONLY_STATES = {
-    'approve': [('readonly', True)],
-    'deliver': [('readonly', True)],
-    'cancel': [('readonly', True)],
-}
-
 
 class ClinicDetection(models.Model):
     _name = 'clinic.detection'
@@ -38,29 +24,43 @@ class ClinicDetection(models.Model):
         return detection_id
 
     name = fields.Char('Name')
-    reference = fields.Char(string="Reference", required=False, )
-    company_id = fields.Many2one('res.company', 'Company', required=True, index=True, states=READONLY_STATES,
+    reference = fields.Char(string="Reference", required=False, readonly=True, state={'draft': [('readonly', False)]}, )
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('approve', 'Approved'),
+        ('deliver', 'Delivered'),
+        ('close', 'Closed'),
+        ('cancel', 'Cancel'),
+    ], string='State', index=True, default='draft', tracking=True, )
+    company_id = fields.Many2one('res.company', 'Company', required=True, index=True,
                                  default=lambda self: self.env.company.id)
     user_id = fields.Many2one('res.users', string='User', default=lambda self: self.env.uid, index=True,
                               tracking=True, readonly=True)
     branch_id = fields.Many2one(comodel_name="res.branch", string="Branch", required=True,
+                                readonly=True, state={'draft': [('readonly', False)]},
                                 index=True, help='This is branch to set')
     detection_date = fields.Datetime(string='Detection Date', required=True, index=True, copy=False,
-                                     default=fields.Datetime.now, )
+                                     default=fields.Datetime.now, readonly=True,
+                                     state={'draft': [('readonly', False)]}, )
 
     detection_type = fields.Many2one(comodel_name="clinic.detection.type", string="Type", required=True,
-                                     default=_default_detection_type)
+                                     default=_default_detection_type, readonly=True,
+                                     state={'draft': [('readonly', False)]}, )
     detection_medicine = fields.One2many('clinic.detection.medicine', 'detection_id', string='Order Parts', copy=True,
-                                         auto_join=True)
-    detection_notes = fields.Html('Notes', help='Notes')
-    detection_doctor = fields.Many2one('res.partner', string='Doctor',
-                                       domain="[('is_doctor', '=', True)]",
-                                       auto_join=True, tracking=True, required=True)
-    detection_employee = fields.Many2one('hr.employee', string='Employee', auto_join=True, tracking=True, required=True)
+                                         auto_join=True, readonly=True, state={'draft': [('readonly', False)]}, )
+    detection_notes = fields.Html('Notes', help='Notes', readonly=True, state={'draft': [('readonly', False)]}, )
+    detection_doctor = fields.Many2one('res.partner', string='Doctor', domain="[('is_doctor', '=', True)]",
+                                       auto_join=True, tracking=True, required=True, readonly=True,
+                                       state={'draft': [('readonly', False)]}, )
+    detection_employee = fields.Many2one('hr.employee', string='Employee', auto_join=True, tracking=True,
+                                         required=True, readonly=True, state={'draft': [('readonly', False)]}, )
     department_id = fields.Many2one('hr.department', related='detection_employee.department_id',
-                                    string='Employee Department', readonly=True, store=True)
-    state = fields.Selection(AVAILABLE_STATE, string='State', index=True, default=AVAILABLE_STATE[0][0],
-                             tracking=True, )
+                                    string='Department', readonly=True, store=True)
+
+    _sql_constraints = [
+        ('unique_employee_clinic_detection', 'UNIQUE(detection_employee, detection_date,detection_doctor)',
+         'Only one Detection For Employee in day for same doctor')
+    ]
 
     @api.model
     def create(self, values):
@@ -76,7 +76,7 @@ class ClinicDetection(models.Model):
     def _default_picking_type(self):
         return self.env['stock.warehouse'].search([('company_id', '=', self.env.company.id)], limit=1).clinic_type_id.id
 
-    picking_type_id = fields.Many2one('stock.picking.type', 'Deliver To', states=READONLY_STATES,
+    picking_type_id = fields.Many2one('stock.picking.type', 'Deliver To',
                                       required=True, default=_default_picking_type,
                                       domain="['|', ('warehouse_id', '=', False), ('warehouse_id.company_id', '=', company_id)]",
                                       help="This will determine operation type of incoming shipment")

@@ -30,11 +30,10 @@
             <field name="view_mode">tree</field>
         </record>
 
-        <menuitem
-                id="menu_clinic_detection_type"
-                action="open_clinic_detection_type"
-                parent="clinic_configuration"
-                sequence="10"/>
+        <menuitem id="menu_clinic_detection_type"
+                  action="open_clinic_detection_type"
+                  parent="clinic_configuration"
+                  sequence="10"/>
 
         <!--Detection-->
         <record id="ir_actions_server_detection_approve" model="ir.actions.server">
@@ -122,7 +121,6 @@
                             <group>
                                 <field name="detection_employee"/>
                                 <field name="department_id" readonly="1"/>
-                                <field name="user_id"/>
                                 <field name="detection_date"/>
                             </group>
                         </group>
@@ -140,7 +138,14 @@
                                 </field>
                             </page>
                             <page string="Notes">
-                                <field name="detection_notes"/>
+                                <group>
+                                    <group>
+                                        <field name="user_id"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="detection_notes"/>
+                                </group>
                             </page>
                         </notebook>
                     </sheet>
